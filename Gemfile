@@ -19,8 +19,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
+group :development, :test do
+  gem 'rspec', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
 end

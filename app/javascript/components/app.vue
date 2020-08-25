@@ -1,20 +1,26 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <h1>Is It a Pokemon?</h1>
+    <p>{{ pokemon }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
-      message: "Hello Vue!"
+      pokemon: "Hello Vue!"
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
+h1 {
+  font-size: 3em;
+  text-align: center;
+}
+
 p {
   font-size: 2em;
   text-align: center;
