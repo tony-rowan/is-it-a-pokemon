@@ -38,7 +38,7 @@ describe('App', () => {
 
       beforeEach(() => {
         button = wrapper.findAll('button')
-          .filter(button => button.text() === 'No')
+          .filter(button => button.text() === 'Yes')
       })
 
       it('exists', () => {
@@ -46,17 +46,41 @@ describe('App', () => {
       })
 
       describe('when clicked', () => {
-        it('fetches and displays a new pokemon', async () => {
-          axios.get.mockImplementation(jest.fn(() => Promise.resolve({
-            data: {
-              name: 'bulbasaur',
-              real: true
-            }
-          })))
+        beforeEach(async () => {
           await button.trigger('click')
+        })
 
-          expect(axios.get).toHaveBeenCalledWith('/pokemon')
-          expect(wrapper.text()).toMatch('Bulbasaur')
+        it('displays that they got the answer correct', () => {
+          expect(wrapper.text()).toMatch('Correct')
+        })
+
+        describe('play again button', () => {
+          let playAgainButton;
+
+          beforeEach(() => {
+            playAgainButton = wrapper.findAll('button')
+              .filter(button => button.text() === 'Play Again?')
+          })
+
+          it('displays a button to play again', () => {
+            expect(playAgainButton.exists()).toBe(true)
+          })
+
+          describe('when clicked', () => {
+            it('fetches and displays a new pokemon', async () => {
+              axios.get.mockImplementation(jest.fn(() => Promise.resolve({
+                data: {
+                  name: 'bulbasaur',
+                  real: true
+                }
+              })))
+
+              await playAgainButton.trigger('click')
+
+              expect(axios.get).toHaveBeenCalledWith('/pokemon')
+              expect(wrapper.text()).toMatch('Bulbasaur')
+            })
+          })
         })
       })
     })
@@ -74,17 +98,41 @@ describe('App', () => {
       })
 
       describe('when clicked', () => {
-        it('fetches and displays a new pokemon', async () => {
-          axios.get.mockImplementation(jest.fn(() => Promise.resolve({
-            data: {
-              name: 'bulbasaur',
-              real: true
-            }
-          })))
+        beforeEach(async () => {
           await button.trigger('click')
+        })
 
-          expect(axios.get).toHaveBeenCalledWith('/pokemon')
-          expect(wrapper.text()).toMatch('Bulbasaur')
+        it('displays that they got the answer wrong', () => {
+          expect(wrapper.text()).toMatch('Wrong')
+        })
+
+        describe('play again button', () => {
+          let playAgainButton;
+
+          beforeEach(() => {
+            playAgainButton = wrapper.findAll('button')
+              .filter(button => button.text() === 'Play Again?')
+          })
+
+          it('displays a button to play again', () => {
+            expect(playAgainButton.exists()).toBe(true)
+          })
+
+          describe('when clicked', () => {
+            it('fetches and displays a new pokemon', async () => {
+              axios.get.mockImplementation(jest.fn(() => Promise.resolve({
+                data: {
+                  name: 'bulbasaur',
+                  real: true
+                }
+              })))
+
+              await playAgainButton.trigger('click')
+
+              expect(axios.get).toHaveBeenCalledWith('/pokemon')
+              expect(wrapper.text()).toMatch('Bulbasaur')
+            })
+          })
         })
       })
     })

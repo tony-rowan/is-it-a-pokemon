@@ -1,25 +1,33 @@
 <template>
   <div id="app">
     <h1>Is It a Pokemon?</h1>
-    <div v-if="loading">
-        <p>...</p>
-    </div>
-    <div v-if="pokemon">
-      <p>{{ pokemon.name | displayName }}</p>
+    <div v-if="answer != null">
+      <h2>{{ answer ? 'Correct!' : 'Wrong!' }}</h2>
       <button
         @click="fetchPokemon"
+      >
+        Play Again?
+      </button>
+    </div>
+    <div v-else-if="pokemon">
+      <p>{{ pokemon.name | displayName }}</p>
+      <button
+        @click="markAnswer(false)"
       >
         No
       </button>
       <button
-        @click="fetchPokemon"
+        @click="markAnswer(true)"
       >
         Yes
       </button>
     </div>
-    <div v-if="error">
+    <div v-else-if="error">
       <p>Error Displaying Pokemon</p>
       <p>{{ error }}</p>
+    </div>
+    <div v-else>
+        <p>...</p>
     </div>
   </div>
 </template>
@@ -30,13 +38,9 @@ import axios from 'axios'
 export default {
   data: function() {
     return {
+      answer: null,
       error: null,
       pokemon: null,
-    }
-  },
-  computed: {
-    loading: function() {
-      return !this.pokemon && !this.error
     }
   },
   filters: {
@@ -51,6 +55,7 @@ export default {
     fetchPokemon: async function() {
       this.pokemon = null
       this.error = null
+      this.answer = null
 
       try {
         let response = await axios.get('/pokemon')
@@ -58,6 +63,9 @@ export default {
       } catch(e) {
         this.error = e
       }
+    },
+    markAnswer: function(real) {
+      this.answer = this.pokemon.real === real
     }
   }
 }
