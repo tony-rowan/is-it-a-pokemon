@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <h1>Is It a Pokemon?</h1>
-    <p>{{ pokemon ? pokemon.name : '...' }}</p>
+    <p v-if="loading">...</p>
+    <p v-if="pokemon">{{ pokemon.name }}</p>
+    <p v-if="error">
+      <span>Error Displaying Pokemon</span>
+      <span>{{ error }}</span>
+    </p>
   </div>
 </template>
 
@@ -11,12 +16,22 @@ import axios from 'axios'
 export default {
   data: function() {
     return {
-      pokemon: null
+      error: null,
+      pokemon: null,
+    }
+  },
+  computed: {
+    loading: function() {
+      return !this.pokemon && !this.error
     }
   },
   created: async function() {
-    let response = await axios.get('/pokemon')
-    this.pokemon = response.data
+    try {
+      let response = await axios.get('/pokemon')
+      this.pokemon = response.data
+    } catch(e) {
+      this.error = e;
+    }
   }
 }
 </script>
