@@ -1,12 +1,26 @@
 <template>
   <div id="app">
     <h1>Is It a Pokemon?</h1>
-    <p v-if="loading">...</p>
-    <p v-if="pokemon">{{ pokemon.name }}</p>
-    <p v-if="error">
-      <span>Error Displaying Pokemon</span>
-      <span>{{ error }}</span>
-    </p>
+    <div v-if="loading">
+        <p>...</p>
+    </div>
+    <div v-if="pokemon">
+      <p>{{ pokemon.name | displayName }}</p>
+      <button
+        @click="fetchPokemon"
+      >
+        No
+      </button>
+      <button
+        @click="fetchPokemon"
+      >
+        Yes
+      </button>
+    </div>
+    <div v-if="error">
+      <p>Error Displaying Pokemon</p>
+      <p>{{ error }}</p>
+    </div>
   </div>
 </template>
 
@@ -25,12 +39,25 @@ export default {
       return !this.pokemon && !this.error
     }
   },
+  filters: {
+    displayName: function(name) {
+      return name.charAt(0).toUpperCase() + name.slice(1)
+    }
+  },
   created: async function() {
-    try {
-      let response = await axios.get('/pokemon')
-      this.pokemon = response.data
-    } catch(e) {
-      this.error = e;
+    this.fetchPokemon()
+  },
+  methods: {
+    fetchPokemon: async function() {
+      this.pokemon = null
+      this.error = null
+
+      try {
+        let response = await axios.get('/pokemon')
+        this.pokemon = response.data
+      } catch(e) {
+        this.error = e
+      }
     }
   }
 }

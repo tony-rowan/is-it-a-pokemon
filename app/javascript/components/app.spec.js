@@ -17,7 +17,7 @@ describe('App', () => {
     beforeEach(() => {
       axios.get.mockImplementation(jest.fn(() => Promise.resolve({
         data: {
-          name: 'Pikachu',
+          name: 'pikachu',
           real: true
         }
       })))
@@ -32,6 +32,62 @@ describe('App', () => {
     it('displays the pokemon name', () => {
       expect(wrapper.text()).toMatch('Pikachu')
     })
+
+    describe('the yes button', () => {
+      let button;
+
+      beforeEach(() => {
+        button = wrapper.findAll('button')
+          .filter(button => button.text() === 'No')
+      })
+
+      it('exists', () => {
+        expect(button.exists()).toBe(true)
+      })
+
+      describe('when clicked', () => {
+        it('fetches and displays a new pokemon', async () => {
+          axios.get.mockImplementation(jest.fn(() => Promise.resolve({
+            data: {
+              name: 'bulbasaur',
+              real: true
+            }
+          })))
+          await button.trigger('click')
+
+          expect(axios.get).toHaveBeenCalledWith('/pokemon')
+          expect(wrapper.text()).toMatch('Bulbasaur')
+        })
+      })
+    })
+
+    describe('the no button', () => {
+      let button;
+
+      beforeEach(() => {
+        button = wrapper.findAll('button')
+          .filter(button => button.text() === 'No')
+      })
+
+      it('exists', () => {
+        expect(button.exists()).toBe(true)
+      })
+
+      describe('when clicked', () => {
+        it('fetches and displays a new pokemon', async () => {
+          axios.get.mockImplementation(jest.fn(() => Promise.resolve({
+            data: {
+              name: 'bulbasaur',
+              real: true
+            }
+          })))
+          await button.trigger('click')
+
+          expect(axios.get).toHaveBeenCalledWith('/pokemon')
+          expect(wrapper.text()).toMatch('Bulbasaur')
+        })
+      })
+    })
   })
 
   describe('when the pokemon cannot be fetched', () => {
@@ -44,6 +100,10 @@ describe('App', () => {
     it('displays an error', () => {
       expect(wrapper.text()).toMatch('Error Displaying Pokemon')
       expect(wrapper.text()).toMatch('Bad Request')
+    })
+
+    it('displays no buttons', () => {
+      expect(wrapper.find('button').exists()).toBe(false)
     })
   })
 })
