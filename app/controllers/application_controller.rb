@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   def pokemon
-    render(status: 200, json: { name: 'Pikachu', real: true })
+    pokemon = Rails.application.config.pokemon.sample
+    render(status: 200, json: pokemon.merge(real: true))
   end
 end

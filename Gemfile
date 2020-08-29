@@ -12,6 +12,8 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 group :development do
+  gem 'guard', '~> 2.16.2', require: false
+  gem 'guard-rspec', '~> 4.7.3', require: false
   gem 'bootsnap', '~> 1.4.2', require: false
   gem 'foreman', '~> 0.87.2'
   gem 'listen', '~> 3.2'

@@ -7,10 +7,14 @@ RSpec.describe ApplicationController do
       assert_response(200)
     end
 
-    it 'returns a pokemon' do
+    it 'returns a random pokemon from the available pokemon in config' do
+      Rails.application.config.pokemon = [
+        {id: 123, name: 'some pokemon'}
+      ]
       get :pokemon
       expect(JSON.parse(response.body).symbolize_keys).to eq(
-        name: 'Pikachu',
+        id: 123,
+        name: 'some pokemon',
         real: true
       )
     end
