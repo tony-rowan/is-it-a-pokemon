@@ -2,25 +2,16 @@
   <div id="app">
     <h1>Is It a Pokemon?</h1>
     <div v-if="answer != null">
-      <h2>{{ answer ? 'Correct!' : 'Wrong!' }}</h2>
-      <button
-        @click="fetchPokemon"
-      >
-        Play Again?
-      </button>
+      <response
+        :correct="answer"
+        @play-again="fetchPokemon"
+      />
     </div>
     <div v-else-if="pokemon">
-      <p>{{ pokemon.name | displayName }}</p>
-      <button
-        @click="markAnswer(false)"
-      >
-        No
-      </button>
-      <button
-        @click="markAnswer(true)"
-      >
-        Yes
-      </button>
+      <question
+        :pokemon="pokemon"
+        @answer="markAnswer"
+      />
     </div>
     <div v-else-if="error">
       <p>Error Displaying Pokemon</p>
@@ -35,7 +26,14 @@
 <script>
 import axios from 'axios'
 
+import Question from './question'
+import Response from './response'
+
 export default {
+  components: {
+    Question,
+    Response
+  },
   data: function() {
     return {
       answer: null,
