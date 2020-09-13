@@ -84,6 +84,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "Pixel";
+  src: url("../assets/fonts/pixel.ttf") format("truetype")
+}
+
+body {
+  font-family: 'Pixel', sans-serif;
+}
+
 h1 {
   font-size: 3em;
   text-align: center;
