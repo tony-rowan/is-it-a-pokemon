@@ -5,6 +5,7 @@ ruby '2.6.5'
 
 gem 'rails', '~> 6.0.3'
 
+gem 'awesome_print', '~> 1.8'
 gem 'jbuilder', '~> 2.7'
 gem 'puma', '~> 4.1'
 gem 'sqlite3', '~> 1.4'

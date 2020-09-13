@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <h1>Is It a Pokemon?</h1>
-    <div v-if="answer != null">
+    <div v-if="response">
       <response
-        :correct="answer"
+        :correct="response.correct"
         @play-again="fetchPokemon"
       />
     </div>
@@ -36,7 +36,7 @@ export default {
   },
   data: function() {
     return {
-      answer: null,
+      response: null,
       error: null,
       pokemon: null,
     }
@@ -53,17 +53,31 @@ export default {
     fetchPokemon: async function() {
       this.pokemon = null
       this.error = null
-      this.answer = null
+      this.response = null
 
       try {
-        let response = await axios.get('/pokemon')
+        let response = await axios.get('/random')
         this.pokemon = response.data
       } catch(e) {
         this.error = e
       }
     },
-    markAnswer: function(real) {
-      this.answer = this.pokemon.real === real
+    markAnswer: async function(real) {
+      let params = {
+        pokemon: this.pokemon.name,
+        real: real
+      };
+
+      this.pokemon = null
+      this.error = null
+      this.response = null
+
+      try {
+        let response = await axios.post('/answer', params)
+        this.response = response.data
+      } catch(e) {
+        this.error = e
+      }
     }
   }
 }
