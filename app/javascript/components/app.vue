@@ -1,25 +1,29 @@
 <template>
-  <div id="app">
-    <h1>Is It a Pokemon?</h1>
-    <div v-if="response">
+  <div id="app" class="app">
+    <h1 class="app__title">Is It a Pokemon?</h1>
+    <template v-if="response">
       <response
+        class="app__state"
         :correct="response.correct"
         @play-again="fetchPokemon"
       />
-    </div>
-    <div v-else-if="pokemon">
+    </template>
+    <template v-else-if="pokemon">
       <question
+        class="app__state"
         :pokemon="pokemon"
         @answer="markAnswer"
       />
-    </div>
-    <div v-else-if="error">
-      <p>Error Displaying Pokemon</p>
-      <p>{{ error }}</p>
-    </div>
-    <div v-else>
-        <p>...</p>
-    </div>
+    </template>
+    <template v-else-if="error">
+      <div class="app__state">
+        <p class="app__error-message">Error Displaying Pokemon</p>
+        <p class="app__error-message">{{ error }}</p>
+      </div>
+    </template>
+    <template v-else>
+      <p class="app__state">...</p>
+    </template>
   </div>
 </template>
 
@@ -89,17 +93,48 @@ export default {
   src: url("../assets/fonts/pixel.ttf") format("truetype")
 }
 
-body {
-  font-family: 'Pixel', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #4FC3F7;
+  background-image: radial-gradient(circle at bottom right, #4FC3F7, #0093C4);
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+
+  width: 100%;
+  height: 100%;
+}
+
+.app__title {
+  color: #FFFFFF;
+  font-family: 'Pixel', sans-serif;
   font-size: 3em;
   text-align: center;
+  text-shadow: 1px 4px 0px #000000;
 }
 
-p {
-  font-size: 2em;
+.app__state {
+  min-height: 164px;
+}
+
+.app__error-message {
+  color: #FFFFFF;
+  font-family: 'Pixel', sans-serif;
+  font-size: 1.2em;
   text-align: center;
+  text-shadow: 1px 2px 0px #000000;
 }
 </style>
