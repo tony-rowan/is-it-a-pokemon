@@ -22,7 +22,7 @@
       </div>
     </template>
     <template v-else>
-      <p class="app__state">...</p>
+      <loading class="app_state" />
     </template>
   </div>
 </template>
@@ -32,11 +32,13 @@ import axios from 'axios'
 
 import Question from './question'
 import Response from './response'
+import Loading from './loading'
 
 export default {
   components: {
     Question,
-    Response
+    Response,
+    Loading
   },
   data: function() {
     return {
