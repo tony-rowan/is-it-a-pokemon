@@ -1,6 +1,5 @@
 Spring.watch(
-  ".ruby-version",
-  ".rbenv-vars",
+  ".tool-versions",
   "tmp/restart.txt",
   "tmp/caching-dev.txt"
 )

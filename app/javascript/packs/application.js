@@ -8,10 +8,14 @@ import axios from 'axios'
 
 Vue.use(TurbolinksAdapter)
 
+
 document.addEventListener('turbolinks:load', () => {
-  // setup csrf token for axios
-  const csrfToken = document.querySelector("meta[name=csrf-token]").content
-  axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  try {
+    // setup csrf token for axios
+    // doesn't exist in test environment
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  } catch {}
 
   // boot the vue app
   var element = document.getElementById("app")
