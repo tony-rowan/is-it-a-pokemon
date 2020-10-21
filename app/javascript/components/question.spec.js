@@ -5,9 +5,8 @@ import Question from './question'
 describe('Question', () => {
   let wrapper = mount(Question, {
     propsData: {
-      pokemon: {
-        id: 15,
-        name: 'pikachu'
+      question: {
+        body: 'pikachu'
       }
     }
   })

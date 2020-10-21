@@ -12,7 +12,7 @@ describe('App', () => {
   function mountWrapper(isUserCorrect = true) {
     axios.get.mockImplementationOnce(jest.fn(() => Promise.resolve({
       data: {
-        name: 'pikachu',
+        body: 'pikachu',
       }
     })))
     axios.post.mockImplementation(jest.fn(() => Promise.resolve({
@@ -190,7 +190,7 @@ describe('App', () => {
       beforeEach(async () => {
         axios.get.mockImplementationOnce(jest.fn(() => Promise.resolve({
           data: {
-            name: 'bulbasaur',
+            body: 'bulbasaur',
           }
         })))
         await playAgainButton.trigger('click')

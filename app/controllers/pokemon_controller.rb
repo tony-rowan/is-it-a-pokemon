@@ -1,6 +1,6 @@
 class PokemonController < ApplicationController
   def random
-    render(status: 200, json: Pokemon.available.sample)
+    render(status: 200, json: QuestionPresenter.new(Question.new).present)
   end
 
   def answer

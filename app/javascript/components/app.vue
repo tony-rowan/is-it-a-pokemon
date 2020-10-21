@@ -5,13 +5,13 @@
       <response
         class="app__state"
         :correct="response.correct"
-        @play-again="fetchPokemon"
+        @play-again="fetchQuestion"
       />
     </template>
-    <template v-else-if="pokemon">
+    <template v-else-if="question">
       <question
         class="app__state"
-        :pokemon="pokemon"
+        :question="question"
         @answer="markAnswer"
       />
     </template>
@@ -44,37 +44,32 @@ export default {
     return {
       response: null,
       error: null,
-      pokemon: null,
-    }
-  },
-  filters: {
-    displayName: function(name) {
-      return name.charAt(0).toUpperCase() + name.slice(1)
+      question: null,
     }
   },
   created: async function() {
-    this.fetchPokemon()
+    this.fetchQuestion()
   },
   methods: {
-    fetchPokemon: async function() {
-      this.pokemon = null
+    fetchQuestion: async function() {
+      this.question = null
       this.error = null
       this.response = null
 
       try {
         let response = await axios.get('/random')
-        this.pokemon = response.data
+        this.question = response.data
       } catch(e) {
         this.error = e
       }
     },
     markAnswer: async function(real) {
       let params = {
-        pokemon: this.pokemon.name,
+        pokemon: this.question.body,
         real: real
       };
 
-      this.pokemon = null
+      this.question = null
       this.error = null
       this.response = null
 

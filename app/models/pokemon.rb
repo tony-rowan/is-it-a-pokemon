@@ -1,5 +1,4 @@
-module Pokemon
-
+class Pokemon
   def self.available
     [
       { id: 1, name: 'bulbasaur' },

@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <p class="question__name">{{ pokemon.name | displayName }}</p>
+    <p class="question__body">{{ question.body | displayBody }}</p>
     <div class="question__option-container">
       <button
         class="question__option"
@@ -23,14 +23,14 @@ import axios from 'axios'
 
 export default {
   props: {
-    pokemon: {
+    question: {
       type: Object,
       required: true
     }
   },
   filters: {
-    displayName: function(name) {
-      return name.charAt(0).toUpperCase() + name.slice(1)
+    displayBody: function(body) {
+      return body.charAt(0).toUpperCase() + body.slice(1)
     }
   },
   methods: {
@@ -51,7 +51,7 @@ export default {
   padding: 24px;
 }
 
-.question__name {
+.question__body {
   margin-bottom: 16px;
 
   color: #FFFFFF;
