@@ -1,6 +1,8 @@
-Rails.application.routes.draw do
-  root to: 'application#index'
+# frozen_string_literal: true
 
-  get :random, to: 'pokemon#random'
-  post :answer, to: 'pokemon#answer'
+Rails.application.routes.draw do
+  root to: "application#index"
+
+  get :random, to: "pokemon#random"
+  post :answer, to: "pokemon#answer"
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PokemonController < ApplicationController
   def random
     render(status: 200, json: QuestionPresenter.new(Question.new).present)
@@ -5,7 +7,7 @@ class PokemonController < ApplicationController
 
   def answer
     pokemon = Pokemon.available.find { |p| p[:name] == params_pokemon }
-    correct =  params_real == pokemon.present?
+    correct = params_real == pokemon.present?
     response_body = { correct: correct }
     response_body.merge!(pokemon: pokemon) if pokemon
     render(status: 200, json: response_body)

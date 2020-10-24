@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Question
   def id
     66

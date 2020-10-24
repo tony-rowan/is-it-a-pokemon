@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuestionPresenter
   attr_reader :question
 
