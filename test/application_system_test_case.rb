@@ -10,15 +10,15 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def teardown
     errors = page.driver.browser.manage.logs.get(:browser).select do |error|
-      error.level == 'FATAL' || error.level == 'ERROR'
+      error.level == "FATAL" || error.level == "ERROR"
     end
 
     if errors.present?
-      STDERR.puts "====="
-      STDERR.puts "Test Produced Javascript Logs"
-      STDERR.puts "---" 
-      errors.each { |e| STDERR.puts "#{e.level}: #{e.message}" }
-      STDERR.puts "====="
+      STDERR.puts("=====")
+      STDERR.puts("Test Produced Javascript Logs")
+      STDERR.puts("---")
+      errors.each { |e| STDERR.puts("#{e.level}: #{e.message}") }
+      STDERR.puts("=====")
     end
   end
 end
