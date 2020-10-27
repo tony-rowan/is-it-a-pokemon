@@ -1,8 +1,6 @@
-# frozen_string_literal: true
+require "application_system_test_case"
 
-require "system_test"
-
-class ApplicationTest < SystemTest
+class ApplicationTest < ApplicationSystemTestCase
   test "display a question" do
     visit root_url
 
@@ -10,7 +8,7 @@ class ApplicationTest < SystemTest
     assert_text "Is It a Pokemon?"
     assert_button "No"
     assert_button "Yes"
-    # TODO: insert a given pokemon and assert that it is displayed
+    # TODO insert a given pokemon and assert that it is displayed
   end
 
   test "answering a question correctly" do
