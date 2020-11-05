@@ -1,5 +1,6 @@
-namespace :markov do
+namespace(:markov) do
   desc("Generate stats for markov nodes")
+
   task(:generate) do
     require_relative("../../config/environment")
 
@@ -7,15 +8,17 @@ namespace :markov do
 
     Pokemon.available.each do |pokemon|
       pokemon = OpenStruct.new(pokemon)
-      puts "Generating stats for #{pokemon.name} (#{pokemon.id})"
       previous_char = nil
+
       pokemon.name.chars.each do |char|
-        pair = [[previous_char, char]]
-        stats[pair] = (stats[pair] || 0) + 1
+        stats[previous_char] = {} unless stats[previous_char]
+        stats[previous_char][char] = 0 unless stats[previous_char][char]
+        stats[previous_char][char] += 1
+
         previous_char = char
       end
     end
 
-    ap stats
+    ap(stats)
   end
 end
