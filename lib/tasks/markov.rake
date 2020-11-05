@@ -17,6 +17,10 @@ namespace(:markov) do
 
         previous_char = char
       end
+
+      stats[previous_char] = {} unless stats[previous_char]
+      stats[previous_char][nil] = 0 unless stats[previous_char][nil]
+      stats[previous_char][nil] += 1
     end
 
     ap(stats)
