@@ -1,7 +1,7 @@
 require "test_helper"
 require "minitest/rails/capybara"
 
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+class SystemTestCase < ActionDispatch::SystemTestCase
   driven_by :selenium, using: :headless_chrome, screen_size: [800, 600]
 
   register_spec_type(self) do |desc, *addl|

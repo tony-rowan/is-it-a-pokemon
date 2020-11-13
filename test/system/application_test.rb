@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class ApplicationTest < ApplicationSystemTestCase
+class ApplicationTest < SystemTestCase
   test("display a question") do
     visit root_url
 

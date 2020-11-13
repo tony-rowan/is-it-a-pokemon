@@ -5,6 +5,6 @@ require_relative("../config/environment")
 require "rails/test_help"
 require "minitest/rails"
 
-class ActiveSupport::TestCase
+class TestCase < ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
 end
