@@ -1,5 +1,4 @@
 class Corpus
-
   attr_reader :corpus
 
   def initialize(corpus)
@@ -15,20 +14,20 @@ class Corpus
   end
 
   def next_characters
-    @next_characters ||= begin
-      next_characters = {}
+    @_next_characters ||= begin
+      _next_characters = {}
 
       corpus.each do |word|
         previous_char = nil
 
         (word.chars + [nil]).each do |char|
-          next_characters[previous_char] = [] unless next_characters[previous_char]
-          next_characters[previous_char] << char
+          _next_characters[previous_char] = [] unless _next_characters[previous_char]
+          _next_characters[previous_char] << char
           previous_char = char
         end
       end
 
-      next_characters
+      _next_characters
     end
   end
 end
