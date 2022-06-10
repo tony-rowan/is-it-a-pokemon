@@ -1,14 +1,8 @@
-<div>
-  <div>
-    Is it a pokemon?
-  </div>
+<div class="text-9xl">
+  <%= @question.name %>
+</div>
 
-  <div>
-    <%= @question.name %>
-  </div>
-
-  <div class="flex">
-    <%= button_to "Yes", responses_path, params: { response: { question: @question, response: "Yes" } } %>
-    <%= button_to "No", responses_path, params: { response: { question: @question, response: "No" } } %>
-  </div>
+<div class="flex gap-8">
+  <%= button_to "Yes", responses_path, params: { response: { question: @question, response: "Yes" } }, class: "button button--yes" %>
+  <%= button_to "No", responses_path, params: { response: { question: @question, response: "No" } }, class: "button button--no" %>
 </div>

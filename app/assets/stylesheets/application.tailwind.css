@@ -2,12 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-orange-500 to-rose-600;
+    @apply text-white;
   }
 }
 
-*/
+
+@layer components {
+  .button {
+    @apply block;
+    @apply px-8 py-4;
+    @apply rounded-lg shadow-lg;
+    @apply text-xl font-semibold text-gray-800;
+    @apply bg-yellow-300 hover:bg-yellow-500;
+  }
+
+  .button--yes {
+    @apply bg-green-300 hover:bg-green-400;
+  }
+
+  .button--no {
+    @apply bg-blue-300 hover:bg-blue-400;
+  }
+}

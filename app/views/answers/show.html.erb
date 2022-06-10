@@ -1,15 +1,9 @@
-<div>
-  <div>
-    <% if @correct %>
-     That's Right!
-   <% else %>
-     Wrong!
-    <% end %>
-  </div>
-
-  <div>
-    <%= @name %>
-  </div>
-
-  <%= link_to "Play Again", root_path %>
+<div class="text-9xl">
+  <% if @correct %>
+   That's Right!
+ <% else %>
+   Wrong!
+  <% end %>
 </div>
+
+<%= link_to "Play Again", root_path, class: "button" %>
