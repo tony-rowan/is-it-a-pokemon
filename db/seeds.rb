@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+generated_names = File.readlines(Rails.root.join("config/data/generated_names.txt"), chomp: true)
+actual_names = File.readlines(Rails.root.join("config/data/actual_names.txt"), chomp: true)
+
+generated_names.each { |name| Question.create!(name: name) }
+actual_names.each { |name| Pokemon.create!(name: name) }

@@ -4,11 +4,11 @@
   </div>
 
   <div>
-    <%= @name %>
+    <%= @question.name %>
   </div>
 
   <div class="flex">
-    <%= button_to "Yes", responses_path, params: { answer: { name: @name, response: "Yes" } } %>
-    <%= button_to "No", responses_path, params: { answer: { name: @name, response: "No" } } %>
+    <%= button_to "Yes", responses_path, params: { response: { question: @question, response: "Yes" } } %>
+    <%= button_to "No", responses_path, params: { response: { question: @question, response: "No" } } %>
   </div>
 </div>

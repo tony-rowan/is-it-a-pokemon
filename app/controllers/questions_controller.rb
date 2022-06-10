@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
   def show
-    @name = "Pikachu"
+    @question = Question.order("RANDOM()").first
   end
 end
