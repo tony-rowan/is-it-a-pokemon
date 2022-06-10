@@ -1,0 +1,14 @@
+<div>
+  <div>
+    Is it a pokemon?
+  </div>
+
+  <div>
+    <%= @name %>
+  </div>
+
+  <div class="flex">
+    <%= button_to "Yes", responses_path, params: { answer: { name: @name, response: "Yes" } } %>
+    <%= button_to "No", responses_path, params: { answer: { name: @name, response: "No" } } %>
+  </div>
+</div>
