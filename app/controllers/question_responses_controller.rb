@@ -1,4 +1,6 @@
 class QuestionResponsesController < ApplicationController
+  include Score
+
   def show
     @response = QuestionResponse.find(params[:id])
   end
@@ -10,6 +12,8 @@ class QuestionResponsesController < ApplicationController
       answer: it_was_a_real_pokemon?,
       correct: correct?
     )
+
+    record_response(correct: correct?)
 
     redirect_to(question_response)
   end
