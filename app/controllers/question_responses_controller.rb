@@ -34,7 +34,7 @@ class QuestionResponsesController < ApplicationController
   end
 
   def it_was_a_real_pokemon?
-    Pokemon.exists?(name: question.name)
+    question.real?
   end
 
   def it_was_a_fake_pokemon?
