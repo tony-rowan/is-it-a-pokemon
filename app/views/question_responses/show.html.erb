@@ -1,9 +1,13 @@
-<div class="text-9xl">
-  <% if @response.correct? %>
-   That's Right!
- <% else %>
-   Wrong!
-  <% end %>
-</div>
+<%= turbo_frame_tag :body do %>
+  <div class="flex flex-col gap-12 items-center content-center justify-between text-center">
+    <div class="text-9xl">
+      <% if @response.correct? %>
+       That's Right!
+     <% else %>
+       Wrong!
+      <% end %>
+    </div>
 
-<%= link_to "Play Again", root_path, class: "button" %>
+    <%= link_to "Play Again", root_path, class: "button" %>
+  </div>
+<% end %>
