@@ -6,9 +6,11 @@
   <div class="flex gap-8">
     <%= button_to "Yes", question_responses_path,
       params: { response: { question: @question, response: "Yes" } },
+      data: { controller: "keyboard-shortcut", action: "keypress@document->keyboard-shortcut#fire", keyboard_shortcut_key_value: "y" },
       class: "button button--yes" %>
     <%= button_to "No", question_responses_path,
       params: { response: { question: @question, response: "No" } },
+      data: { controller: "keyboard-shortcut", action: "keypress@document->keyboard-shortcut#fire", keyboard_shortcut_key_value: "n" },
       class: "button button--no" %>
   </div>
 <% end %>

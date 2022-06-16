@@ -7,5 +7,7 @@
     <% end %>
   </div>
 
-  <%= link_to "Play Again", root_path, class: "button" %>
+  <%= link_to "Play Again", root_path,
+    data: { controller: "keyboard-shortcut", action: "keypress@document->keyboard-shortcut#fire", keyboard_shortcut_key_value: "Enter" },
+    class: "button" %>
 <% end %>
