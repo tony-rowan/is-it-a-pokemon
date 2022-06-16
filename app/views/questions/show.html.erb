@@ -3,6 +3,10 @@
 </div>
 
 <div class="flex gap-8">
-  <%= button_to "Yes", responses_path, params: { response: { question: @question, response: "Yes" } }, class: "button button--yes" %>
-  <%= button_to "No", responses_path, params: { response: { question: @question, response: "No" } }, class: "button button--no" %>
+  <%= button_to "Yes", question_responses_path,
+    params: { response: { question: @question, response: "Yes" } },
+    class: "button button--yes" %>
+  <%= button_to "No", question_responses_path,
+    params: { response: { question: @question, response: "No" } },
+    class: "button button--no" %>
 </div>

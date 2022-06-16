@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root "questions#show"
 
-  resources :responses, only: :create
-  resource :answer, only: :show
+  resources :question_responses, only: %i[show create]
 end
