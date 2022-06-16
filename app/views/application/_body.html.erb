@@ -1,0 +1,10 @@
+<%= turbo_frame_tag :body do %>
+  <main class="container mx-auto p-16 min-w-screen min-h-screen
+    flex flex-col gap-8 items-center content-center justify-evenly text-center">
+    <h1 class="text-4xl font-semibold">
+      Is It a Pokémon?
+    </h1>
+
+    <%= yield %>
+  </main>
+<% end %>
