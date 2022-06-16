@@ -9,10 +9,10 @@
       <div class="text-left"><%= @stats[:total][:all] %></div>
 
       <div class="font-semibold text-right">Correct</div>
-      <div class="text-left"><%= @stats[:total][:correct] %></div>
+      <div class="text-left"><%= @stats[:total][:correct] %> (<%= (@stats[:total][:correct].to_f / @stats[:total][:all] * 100).round %>%)</div>
 
       <div class="font-semibold text-right">Wrong</div>
-      <div class="text-left"><%= @stats[:total][:wrong] %></div>
+      <div class="text-left"><%= @stats[:total][:wrong] %> (<%= (@stats[:total][:wrong].to_f / @stats[:total][:all] * 100).round %>%)</div>
     </div>
   </div>
 
@@ -26,10 +26,10 @@
       <div class="text-left"><%= @stats[:real][:all] %></div>
 
       <div class="font-semibold text-right">Correct</div>
-      <div class="text-left"><%= @stats[:real][:correct] %></div>
+      <div class="text-left"><%= @stats[:real][:correct] %> (<%= (@stats[:real][:correct].to_f / @stats[:real][:all] * 100).round %>%)</div>
 
       <div class="font-semibold text-right">Wrong</div>
-      <div class="text-left"><%= @stats[:real][:wrong] %></div>
+      <div class="text-left"><%= @stats[:real][:wrong] %> (<%= (@stats[:real][:wrong].to_f / @stats[:real][:all] * 100).round %>%)</div>
     </div>
   </div>
 
@@ -43,10 +43,10 @@
       <div class="text-left"><%= @stats[:fake][:all] %></div>
 
       <div class="font-semibold text-right">Correct</div>
-      <div class="text-left"><%= @stats[:fake][:correct] %></div>
+      <div class="text-left"><%= @stats[:fake][:correct] %> (<%= (@stats[:fake][:correct].to_f / @stats[:fake][:all] * 100).round %>%)</div>
 
       <div class="font-semibold text-right">Wrong</div>
-      <div class="text-left"><%= @stats[:fake][:wrong] %></div>
+      <div class="text-left"><%= @stats[:fake][:wrong] %> (<%= (@stats[:fake][:wrong].to_f / @stats[:fake][:all] * 100).round %>%)</div>
     </div>
   </div>
 </div>
