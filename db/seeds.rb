@@ -8,6 +8,9 @@
 
 generated_names = File.readlines(Rails.root.join("config/data/generated_names.txt"), chomp: true)
 actual_names = File.readlines(Rails.root.join("config/data/actual_names.txt"), chomp: true)
+  .map { |line| line[5..] } # drop the number
+  .map(&:downcase)
+  .reject { |name| name =~ /[♀♂\.'2\-é:\ ]/ } # don't deal with special characters yet
 
 generated_names.each { |name| Question.create!(name: name) }
 actual_names.each { |name| Pokemon.create!(name: name) }
