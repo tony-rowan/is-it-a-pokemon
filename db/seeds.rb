@@ -6,11 +6,20 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-generated_names = File.readlines(Rails.root.join("config/data/generated_names.txt"), chomp: true)
-actual_names = File.readlines(Rails.root.join("config/data/actual_names.txt"), chomp: true)
-  .map { |line| line[5..] } # drop the number
-  .map(&:downcase)
-  .reject { |name| name =~ /[♀♂\.'2\-é:\ ]/ } # don't deal with special characters yet
+puts "Adding Pokémon"
+# Each line is the pokemon with its number -> #999 pokemon_name
+File.readlines(Rails.root.join("config/data/pokemon.txt"), chomp: true).each do |line|
+  number = line[1..3].to_i
+  name = line[5..].downcase
+  Pokemon.create!(number: number, name: name)
+  putc "."
+end
+puts ""
 
-generated_names.each { |name| Question.create!(name: name) }
-actual_names.each { |name| Pokemon.create!(name: name) }
+# Each line of the file is just the name to ask
+puts "Adding Questions"
+File.readlines(Rails.root.join("config/data/questions.txt"), chomp: true).each do |line|
+  Question.create!(name: line.downcase)
+  putc "."
+end
+puts ""
