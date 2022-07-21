@@ -20,12 +20,11 @@ jobs:
         run: bin/standardrb
   Prettier:
     runs-on: ubuntu-latest
-    name: Prettier
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node
-        uses: node/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          bundler-cache: true
+          node-version: 16
       - name: Run Prettier
         run: npx prettier --check .
