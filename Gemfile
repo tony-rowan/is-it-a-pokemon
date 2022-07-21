@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem "rails", "~> 7.0.3"
 
+gem "bootsnap", require: false
 gem "importmap-rails"
 gem "pg"
 gem "puma"
