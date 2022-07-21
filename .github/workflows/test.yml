@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     name: "RSpec"
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
-    - name: Run RSpec
-      run: bin/rspec
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run RSpec
+        run: bin/rspec

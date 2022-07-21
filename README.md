@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![Lint](https://github.com/tony-rowan/is-it-a-pokemon/actions/workflows/lint.yml/badge.svg)
+![Test](https://github.com/tony-rowan/is-it-a-pokemon/actions/workflows/test.yml/badge.svg)
 
-Things you may want to cover:
+Quiz yourself on Pokémon names!
 
-* Ruby version
+### Data
 
-* System dependencies
+Pokémon names were generated with [pokemon-name-generator][gh-pokeng].
 
-* Configuration
+### Requirements
 
-* Database creation
+- **[`asdf`][asdf]**
+  Installs and manages Ruby version
+- **[`docker`][docker], [`docker-compose`][docker-compose]**
+  Installs and manages Ruby version
 
-* Database initialization
+### Getting Started
 
-* How to run the test suite
+Once the requirements are installed, getting set up is pretty simple.
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+# Install the correct ruby verison
+$ asdf install
+# Start the DB, redis and install gems
+$ bin/setup
+```
 
-* Deployment instructions
+Once these have completed, you should be good to go!
 
-* ...
+[gh-pokeng]: https://github.com/tony-rowan/pokemon-name-generator
+[asdf]: https://asdf-vm.com
+[docker]: https://www.docker.com
+[docker-compose]: https://docs.docker.com/compose/install

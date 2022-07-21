@@ -1,13 +1,13 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = {
-    key: String
-  }
+    key: String,
+  };
 
   fire(event) {
     if (event.key == this.keyValue) {
-      this.element.click()
+      this.element.click();
     }
   }
 }
