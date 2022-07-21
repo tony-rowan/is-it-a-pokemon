@@ -6,19 +6,20 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.3"
 
 gem "importmap-rails"
-gem "sprockets-rails"
 gem "pg"
 gem "puma"
-gem "turbo-rails"
+gem "redis"
+gem "sprockets-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
-gem "redis"
+gem "turbo-rails"
 
 group :development, :test do
-  gem "foreman"
+  gem "rspec-rails"
 end
 
 group :development do
+  gem "foreman"
   gem "standard"
   gem "web-console"
 end
