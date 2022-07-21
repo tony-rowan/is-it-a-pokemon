@@ -8,19 +8,19 @@ class QuestionResponse < ApplicationRecord
   def self.stats
     {
       total: {
-        all: self.count,
-        correct: self.where(correct: true).count,
-        wrong: self.where(correct: false).count,
+        all: count,
+        correct: where(correct: true).count,
+        wrong: where(correct: false).count
       },
       real: {
-        all: self.where(answer: true).count,
-        correct: self.where(answer: true, correct: true).count,
-        wrong: self.where(answer: true, correct: false).count,
+        all: where(answer: true).count,
+        correct: where(answer: true, correct: true).count,
+        wrong: where(answer: true, correct: false).count
       },
       fake: {
-        all: self.where(answer: false).count,
-        correct: self.where(answer: false, correct: true).count,
-        wrong: self.where(answer: false, correct: false).count,
+        all: where(answer: false).count,
+        correct: where(answer: false, correct: true).count,
+        wrong: where(answer: false, correct: false).count
       }
     }
   end
