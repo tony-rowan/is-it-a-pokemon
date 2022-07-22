@@ -23,13 +23,16 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Ruby
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Install gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Setup DB
-        run: bin/rails db:setup && bin/rails db:migrate
+      - name: Create database
+        run: bin/rails db:create
+      - name: Load database schema
+        run: bin/rails db:schema:load && bin/rails db:migrate
       - name: Build assets
         run: bin/rails assets:precompile
       - name: Run RSpec
