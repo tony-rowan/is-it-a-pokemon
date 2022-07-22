@@ -21,6 +21,7 @@ end
 
 group :development do
   gem "foreman"
+  gem "lefthook"
   gem "standard"
   gem "web-console"
 end
