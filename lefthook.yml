@@ -4,6 +4,6 @@ pre-commit:
     prettier:
       run: npx prettier --ignore-unknown --write {staged_files} && git add {staged_files}
     standardrb:
-      run: bin/bundle exec standardrb --fix --only-recognized-file-types --force-exclusion {staged_files} && git add {staged_files}
+      run: bin/standardrb --fix --only-recognized-file-types --force-exclusion {staged_files} && git add {staged_files}
     rspec:
       run: bin/rails assets:precompile && bin/rspec --format=progress
