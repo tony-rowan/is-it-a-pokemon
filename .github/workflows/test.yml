@@ -10,11 +10,27 @@ jobs:
   RSpec:
     runs-on: ubuntu-latest
     name: "RSpec"
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Setup DB
+        run: bin/rails db:setup && bin/rails db:migrate
+      - name: Build assets
+        run: bin/rails assets:precompile
       - name: Run RSpec
         run: bin/rspec
